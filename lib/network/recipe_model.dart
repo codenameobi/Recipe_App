@@ -62,11 +62,11 @@ class APIRecipeQuery {
       _$APIRecipeFromJson(json);
   Map<String, dynamic> toJson() => _$APIRecipeToJson(this); }
 
-  String getCalories(double calories) { if (calories == 0) {
+  String getCalories(double calories) { if (calories == null) {
     return '0 KCAL';   }
   return calories.floor().toString() + ' KCAL'; }
   // 5
-  String getWeight(double weight) { if (weight == 0) {
+  String getWeight(double weight) { if (weight == null) {
     return '0g';   }
   return weight.floor().toString() + 'g';
 }
