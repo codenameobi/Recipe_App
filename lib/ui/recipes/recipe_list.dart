@@ -10,6 +10,7 @@ import '../../network/recipe_model.dart';
 import 'package:flutter/services.dart';
 import '../recipe_card.dart';
 import 'recipe_details.dart';
+import '../../network/recipe_service.dart';
 
 
 class RecipeList extends StatefulWidget {
@@ -23,7 +24,7 @@ class _RecipeListState extends State<RecipeList> {
   // TODO: Add key
   late TextEditingController searchTextController;
   final ScrollController _scrollController = ScrollController();
-  List currentSearchList = [];
+  List<APIHits> currentSearchList = [];
   int currentCount = 0;
   int currentStartPosition = 0;
   int currentEndPosition = 20;
@@ -207,12 +208,12 @@ class _RecipeListState extends State<RecipeList> {
   }
 
   Widget _buildRecipeLoader(BuildContext context) {
-    if (_currentRecipes1 == null || _currentRecipes1.hits == null) {
+    if (_currentRecipes1 == null || _currentRecipes1!.hits == null) {
       return Container();
     }
     // Show a loading indicator while waiting for the movies
     return Center(
-      child: _buildRecipeCard(context, _currentRecipes1.hits, 0),
+      child: _buildRecipeCard(context, _currentRecipes1!.hits, 0),
     );
   }
 
